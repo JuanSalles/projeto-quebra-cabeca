@@ -37,9 +37,10 @@ function embaralhar (arr){
 
       if(element !== resultado[index]){
         invercoes++
+        console.log(invercoes, arr.length-1)
       }
       if(index===arr.length-1){
-        if((invercoes%2)===0){
+        if((invercoes%2)!==0){
           condition = false;
         }    
       }
