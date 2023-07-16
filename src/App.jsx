@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const mtxCorreta = gerarArray(3);
+const colunas = 3;
+const mtxCorreta = gerarArray(colunas);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
 let whiteIndex;
 
@@ -14,7 +15,6 @@ function gerarArray(linhas){
 }
 
 function embaralhar (arr){
-  console.log("funcao embaralhar")
 
   let resultado;
   let arrayMem;
@@ -57,7 +57,8 @@ function App() {
   const [jogo, setJogo] = useState(organizaQuadros(mtxEmbaralhada));
 
   function organizaQuadros(arr){
-
+    
+    
     return(
       arr.map((element, index) => {
         if(element === mtxCorreta[mtxCorreta.length-1]){
@@ -77,21 +78,20 @@ function App() {
 
   function mainGame(event){
     
-    let comprimento = Math.sqrt(mtxCorreta.length);
     let resultado = [...mtxEmbaralhada]
     let index = parseInt(event.target.dataset.numero)
-    let linha = parseInt(index/comprimento);
+    let linha = parseInt(index/colunas);
   
     const trocaElemento = () => {
       resultado[index] = mtxEmbaralhada[whiteIndex];
       resultado[whiteIndex] = mtxEmbaralhada[index];
     }
     
-        if((linha === parseInt((whiteIndex)/comprimento))){
+        if((linha === parseInt((whiteIndex)/colunas))){
           if((mtxEmbaralhada[index-1] === mtxEmbaralhada[whiteIndex]) || (mtxEmbaralhada[index+1] === mtxEmbaralhada[whiteIndex])){
             trocaElemento()
           }
-        }else if((index-comprimento === whiteIndex)||(index+comprimento === whiteIndex)){
+        }else if((index-colunas === whiteIndex)||(index+colunas === whiteIndex)){
           trocaElemento()
         }
     
@@ -99,11 +99,15 @@ function App() {
     return(organizaQuadros(resultado))
   }
 
+  const styleColunas = {"grid-template-columns": `repeat(${colunas}, auto)`}
   return (
+    <>
     <div className="container">
-      <div className="container__game jogo">{jogo}</div>
+      <div className="container__game jogo" style={styleColunas}>{jogo}</div>
       <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/foto.png")`}}></div>
     </div>
+    </>
+    
   )
 }
 

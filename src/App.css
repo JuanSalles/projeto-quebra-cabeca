@@ -10,11 +10,9 @@
   width: 100%;
   gap: 20px;
   flex-wrap: wrap;
-  padding: 30px;
 }
 .container__game{
   display: grid;
-  grid-template-columns: 100px 100px 100px;
   gap: 2px;
   
 }
