@@ -1,38 +1,59 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
+const mtxCorreta = gerarArray(3);
+let mtxEmbaralhada = embaralhar(mtxCorreta);
+let whiteIndex;
+
+function gerarArray(linhas){
+  const arr = [];
+  for(let i=0; i<linhas*linhas; i++){
+    arr.push(String.fromCharCode(65+i))
+  }
+  return arr
+}
+
+function embaralhar (arr){
+  console.log("funcao embaralhar")
+
+  let resultado;
+  let arrayMem;
+  let invercoes;
+  let condition = true;
+
+  const randomNumber = (max) =>{
+    let result = Math.floor(Math.random() * max);
+    return result
+  }
+  while(condition){
+
+    resultado = [];
+    arrayMem = [...arr];
+    invercoes = 0;
+    
+    arr.forEach((element, index) => {
+
+      resultado.push(...arrayMem.splice(randomNumber(arrayMem.length),1));
+
+      if(element !== resultado[index]){
+        invercoes++
+      }
+      if(index===arr.length-1){
+        if((invercoes%2)===0){
+          condition = false;
+        }    
+      }
+      
+    })
+  }
+  
+
+  return resultado;
+}
+
 function App() {
 
-  function gerarArray(linhas){
-    const arr = [];
-    for(let i=0; i<linhas*linhas; i++){
-      arr.push(String.fromCharCode(65+i))
-    }
-    return arr
-  }
-
-  const mtxCorreta = gerarArray(3);
-  let mtxEmbaralhada = embaralhar(mtxCorreta);
-
-  let whiteIndex;
-
   const [jogo, setJogo] = useState(organizaQuadros(mtxEmbaralhada));
-
-
-  function embaralhar (arr){
-
-    let resultado = [];
-    let arrayMem = [...arr];
-
-    const randomNumber = (max) =>{
-      let result = Math.floor(Math.random() * max);
-      return result
-    }
-
-    arr.forEach(() => {resultado.push(...arrayMem.splice(randomNumber(arrayMem.length),1))})
-
-    return resultado;
-  }
 
   function organizaQuadros(arr){
 
@@ -41,12 +62,12 @@ function App() {
         if(element === mtxCorreta[mtxCorreta.length-1]){
           whiteIndex = index;
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundColor: "white"}}></div>
+            <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundColor: "white"}}>{element}</div>
           )
         }else{
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/${element}.png")`}} 
-            onClick={(event) => setJogo(mainGame(event))}></div>
+            <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundImage: `url("/gamephotos/${element}.png")`}} 
+            onClick={(event) => setJogo(mainGame(event))}>{element}</div>
           )
         }
       })
@@ -59,16 +80,14 @@ function App() {
     let resultado = [...mtxEmbaralhada]
     let index = parseInt(event.target.dataset.numero)
     let linha = parseInt(index/comprimento);
-
+  
     const trocaElemento = () => {
       resultado[index] = mtxEmbaralhada[whiteIndex];
       resultado[whiteIndex] = mtxEmbaralhada[index];
     }
     
-        if((linha === parseInt((whiteIndex)/comprimento)) || (linha === parseInt((whiteIndex)/comprimento))){
-          if(mtxEmbaralhada[index-1] === mtxEmbaralhada[whiteIndex]){
-            trocaElemento()
-          }else if(mtxEmbaralhada[index+1] === mtxEmbaralhada[whiteIndex]){
+        if((linha === parseInt((whiteIndex)/comprimento))){
+          if((mtxEmbaralhada[index-1] === mtxEmbaralhada[whiteIndex]) || (mtxEmbaralhada[index+1] === mtxEmbaralhada[whiteIndex])){
             trocaElemento()
           }
         }else if((index-comprimento === whiteIndex)||(index+comprimento === whiteIndex)){
@@ -76,13 +95,13 @@ function App() {
         }
     
     mtxEmbaralhada = resultado;
-    return(organizaQuadros(mtxEmbaralhada))
+    return(organizaQuadros(resultado))
   }
 
   return (
     <div className="container">
       <div className="container__game jogo">{jogo}</div>
-      <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/foto.png")`}}>{organizaQuadros(mtxCorreta)}</div>
+      <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/foto.png")`}}></div>
     </div>
   )
 }
