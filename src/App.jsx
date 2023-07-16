@@ -62,12 +62,12 @@ function App() {
         if(element === mtxCorreta[mtxCorreta.length-1]){
           whiteIndex = index;
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundColor: "white"}}>{element}</div>
+            <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundColor: "white"}}></div>
           )
         }else{
           return(
             <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundImage: `url("/gamephotos/${element}.png")`}} 
-            onClick={(event) => setJogo(mainGame(event))}>{element}</div>
+            onClick={(event) => setJogo(mainGame(event))}></div>
           )
         }
       })
