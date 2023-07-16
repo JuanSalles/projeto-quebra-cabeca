@@ -1,0 +1,21 @@
+.principal-container{
+  color: white;
+}
+
+.container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+.container__game{
+  display: grid;
+  grid-template-columns: 100px 100px 100px;
+  gap: 2px;
+}
+.quadro{
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+}
+
