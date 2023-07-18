@@ -9,12 +9,14 @@ class Foto {
 
 const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4)]
 
+let arrayNumerico = [];
 let indexFotos = 0;
 let mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
 let whiteIndex;
 
 function gerarArray(size = pastaDeFotos[indexFotos].tamanho){
+ 
   const arr = [];
   for(let i=0; i<size*size; i++){
     arr.push(String.fromCharCode(65+i))
@@ -39,21 +41,45 @@ function embaralhar (arr){
     arrayMem = [...arr];
     invercoes = 0;
     
-    arr.forEach((element, index) => {
+    arr.forEach(() => {
 
       resultado.push(...arrayMem.splice(randomNumber(arrayMem.length),1));
 
-      if(element !== resultado[index]){
-        invercoes++
-        console.log(invercoes, arr.length-1)
-      }
-      if(index===arr.length-1){
+      // if(element !== resultado[index]){
+      //   invercoes++
+      //   
+      // }
+      // if(index===arr.length-1){
+      //   if((invercoes%2)!==0){
+      //     condition = false;
+      //   }    
+      // }
+      })
+      resultado.forEach((element) =>{
+        invercoes += resultado.reduce((acumulador, valorAtual)=>{
+          console.log(element, invercoes, valorAtual)
+          if (element !== arr[arr.length-1]){
+            if ((element.charCodeAt(0)-65)<(valorAtual.charCodeAt(0)-65)){
+              return acumulador++
+            }else{
+              return acumulador
+            }
+          }
+        }, 0)
+      })
+
+      
+
+      if((Math.sqrt(arr.length)%2)!==0){
         if((invercoes%2)!==0){
           condition = false;
-        }    
+        }
+      }else{
+        if((invercoes%2)===0){
+          condition = false;
+        }
       }
       
-    })
   }
   
 
