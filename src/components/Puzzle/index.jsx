@@ -116,16 +116,19 @@ function Puzzle () {
     <div className="container">
       <div className="container__game jogo" style={styleColunas}>{jogo}</div>
       <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/Imagens/${fotoEscolhida}/foto.png")`}} onClick={ () =>{
-        indexFotos++;
-        setFoto(() =>{
-          console.log(indexFotos)
-          mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
-          mtxEmbaralhada = embaralhar(mtxCorreta);
-          
-          setJogo(organizaQuadros(mtxEmbaralhada, pastaDeFotos[indexFotos].nome));
-
-          return (pastaDeFotos[indexFotos].nome);
-        })
+        
+        if(indexFotos<pastaDeFotos.length-1){
+          indexFotos++;
+          setFoto(() =>{
+            console.log(indexFotos)
+            mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
+            mtxEmbaralhada = embaralhar(mtxCorreta);
+            
+            setJogo(organizaQuadros(mtxEmbaralhada, pastaDeFotos[indexFotos].nome));
+  
+            return (pastaDeFotos[indexFotos].nome);
+          })
+        }
         }}></div>
     </div>
   )
