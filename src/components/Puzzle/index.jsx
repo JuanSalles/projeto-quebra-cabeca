@@ -5,9 +5,19 @@ const mtxCorreta = gerarArray(colunas);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
 let whiteIndex;
 
-function gerarArray(linhas){
+class Foto {
+  constructor (nome, tamanho) {
+    this.nome = nome;
+    this.tamanho = tamanho;
+  }
+}
+
+const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("Sapo-vermelho", 4)]
+
+
+function gerarArray(linhas, foto = pastaDeFotos[0]){
   const arr = [];
-  for(let i=0; i<linhas*linhas; i++){
+  for(let i=0; i<foto.tamanho*foto.tamanho; i++){
     arr.push(String.fromCharCode(65+i))
   }
   return arr
@@ -104,7 +114,7 @@ function Puzzle () {
   return(
     <div className="container">
       <div className="container__game jogo" style={styleColunas}>{jogo}</div>
-      <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/foto.png")`}}></div>
+      <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/foto.png")`}} onClick={(event) => setFoto(organizaQuadros(event))}></div>
     </div>
   )
 }
