@@ -4,6 +4,7 @@ footer{
     background-image: url(/footer/background-footer-mobile.png);
     width: 100vw;
     height: calc(0.124*100vw);
+    max-height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;

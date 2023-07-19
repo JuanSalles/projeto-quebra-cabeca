@@ -149,48 +149,56 @@ function Puzzle () {
 
    
   return(
-    <div className="container-jogo">
-      <p>{pastaDeFotos[indexFotos].tamanho}X{pastaDeFotos[indexFotos].tamanho}</p>
-      <div className="container__game" style={styleColunas}>{jogo}</div>
+    <div className='container-jogo' style={{width: window.screen.width*0.82}}>
+      <div className="container-puzzle">
+        <p>{pastaDeFotos[indexFotos].tamanho}X{pastaDeFotos[indexFotos].tamanho}</p>
+        <div className="container__game" style={styleColunas}>{jogo}</div>
+      </div>
+        <button type="button" className='botao-ajuda' onClick={() => 
+          setAjuda(() => {
 
-       <button type="button" className='botao-ajuda' onClick={() => 
-        setAjuda(() => {
-
-          if (ajuda === ""){
-            return(
-              <div className='ajudaDoJogo'>
-              <p>Mover as peças pelo espaço vazio você deve!</p>
-              <img src="/emote/yoda.png"/>
-              </div>
-            )
-          }else{
-            return ""
-          }
-            
-        })
-        }>HELP</button>
-
-      <span className='container__ajudaDoJogo'>{ajuda}</span>
-      
-      {/* <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/Imagens/${fotoEscolhida}/foto.png")`}} onClick={ () =>{
-        
-        if(indexFotos<pastaDeFotos.length-1){
-          indexFotos++;
-          setFoto(() =>{
-            console.log(indexFotos)
-            mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
-            mtxEmbaralhada = embaralhar(mtxCorreta);
-            
-            setJogo(organizaQuadros(mtxEmbaralhada, pastaDeFotos[indexFotos].nome));
-  
-            return (pastaDeFotos[indexFotos].nome);
+            if (ajuda === ""){
+              return(
+                <div className='ajudaDoJogo'>
+                <p>Mover as peças pelo espaço vazio você deve!</p>
+                <img src="/emote/yoda.png"/>
+                </div>
+              )
+            }else{
+              return ""
+            }
+              
           })
-        }
-        }}>
+          }>HELP</button>
 
-        
-      </div> */}
+        <span className='container__ajudaDoJogo'>{ajuda}</span>
       
+      <div className='titulo-escolhas'>
+          <p>CHOSE YOUR IA PIC</p>
+      </div>
+      <div className='container-escolhas'>
+        {pastaDeFotos.map((element, index)=>{
+
+          return(
+            <div key={`seletor-${element.nome}`} className='botao-escolha' style={{backgroundImage:`url("/gamephotos/Imagens/${element.nome}/foto.png")`}} id={`escolha-${element.nome}`} onClick={(event) => {
+              setFoto(() =>{
+                
+                mtxCorreta = gerarArray(pastaDeFotos[index].tamanho);
+                mtxEmbaralhada = embaralhar(mtxCorreta);
+
+                indexFotos = index;
+                
+                setJogo(organizaQuadros(mtxEmbaralhada, pastaDeFotos[index].nome));
+      
+                return (pastaDeFotos[index].nome);
+              })
+            }}></div>
+          )
+
+        })}
+      </div>
+      
+    
     </div>
   )
 }

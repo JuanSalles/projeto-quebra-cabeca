@@ -9,7 +9,7 @@ function Navegacao (){
                 <label className ="container__menu__hamburguer" htmlFor="menu">
                     <span className="menu-hamburguer"></span>
                 </label>
-                <ul className="lista-menu">
+                {/* <ul className="lista-menu">
                     <li className="lista-menu__item">
                         <a href="#" className="lista-menu__link cor-links">PROGRAMAÇÃO</a>
                     </li>
@@ -25,7 +25,7 @@ function Navegacao (){
                     <li className="lista-menu__item">
                         <a href="#" className="lista-menu__link cor-links">DESIGN & UX</a>
                     </li>
-                </ul>
+                </ul> */}
             </div>
             <p>PUZZLE</p>
         </nav>

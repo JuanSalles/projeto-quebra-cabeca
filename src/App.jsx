@@ -9,11 +9,14 @@ function App() {
 
   
   return (
-    <div className='container'>
+    <>
     <Navegacao />
+    <div className='container'>
     <Puzzle />
     <Rodape />
     </div>
+    </>
+    
     
   )
 }
