@@ -99,11 +99,11 @@ function Puzzle () {
         if(element === mtxCorreta[mtxCorreta.length-1]){
           whiteIndex = index;
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundColor: "white"}}></div>
+            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`, boxShadow: `0px 0px 5px 2px white`}}></div>
           )
         }else{
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{color:"red", backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`}} 
+            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`}} 
             onClick={(event) => setJogo(mainGame(event))}></div>
           )
         }
@@ -139,8 +139,16 @@ function Puzzle () {
 
   return(
     <div className="container">
-      <div className="container__game jogo" style={styleColunas}>{jogo}</div>
-      <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/Imagens/${fotoEscolhida}/foto.png")`}} onClick={ () =>{
+      <div className='container-game-instrucoes'>
+        <div className='container-instrucoes'><p>Para jogar: Click nas peças em volta da peça em destaque.</p>
+        </div>
+        <div className="container__game jogo" style={styleColunas}>{jogo}</div>
+      </div>
+
+      <div className='container-game-instrucoes'>
+        <div className='container-instrucoes'><p>Para Trocar: Click na imagem completa.</p>
+        </div>
+        <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/Imagens/${fotoEscolhida}/foto.png")`}} onClick={ () =>{
         
         if(indexFotos<pastaDeFotos.length-1){
           indexFotos++;
@@ -155,6 +163,8 @@ function Puzzle () {
           })
         }
         }}></div>
+      </div>
+      
     </div>
   )
 }
