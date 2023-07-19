@@ -1,6 +1,7 @@
 
 import Puzzle from './components/Puzzle'
-import Iniciar from './components/Iniciar'
+import Rodape from './components/Footer'
+import Navegacao from './components/Navegar'
 import './App.css'
 
 
@@ -8,9 +9,11 @@ function App() {
 
   
   return (
-    <>
-    <Puzzle/>
-    </>
+    <div className='container'>
+    <Navegacao />
+    <Puzzle />
+    <Rodape />
+    </div>
     
   )
 }

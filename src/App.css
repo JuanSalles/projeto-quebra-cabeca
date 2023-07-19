@@ -2,54 +2,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
 
-
-.principal-container{
-  color: white;
-}
-
 .container{
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+}
+
+.container-jogo{
+  display: flex;
+  flex-direction: column;
+  margin: 48px 0px;
+  align-items: center;
+  max-width: 600px;
+}
+
+.container-jogo p{
+  color: var(--text-second-color);
+  font-size: 20px;
   width: 100%;
-  gap: 20px;
-  flex-wrap: wrap;
+  margin-bottom: 5px;
 }
 .container__game{
   display: grid;
   gap: 2px;
   
 }
-.quadro{
-  width: 100px;
+
+.ajudaDoJogo{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: calc(0.73*100vw);
+  max-width: 600px;
+  background-color: var(--text-dark-color);
+  padding: 10px;
+}
+
+.ajudaDoJogo p{
+  padding-left: 10px;
+  color: rgb(95, 226, 91);
+}
+
+.ajudaDoJogo img{
   height: 100px;
+
+}
+
+.quadro{
+
   background-size: contain;
 }
 
-.container-game-instrucoes{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.branco{
+  background: rgba(255, 255, 255, 0.40);
 }
 
-.container-instrucoes{
-  display: flex;
-  width: 300px;
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 5px;
+.botao-ajuda{
+  margin: 20px;
+  text-decoration: none;
+  border: none;
+  width: 60.789px;
+  height: 29.842px;
+  background: rgba(30, 30, 30, 0.53); 
+  color: var(--nav-color);
+  font-size: 20px;
+  font-family: Anton, sans-serif;
+  box-shadow: 4px 4px 1px -1px rgba(0, 0, 0, 0.25); 
 }
-
-.container-instrucoes p{
-  font-family: "Anton", sans-serif;
-  font-size: 15px;
-  color: #569ea6;
-  text-align: center;
-  padding-bottom: 10px;
-
-}
-
 .resposta{
   width: 300px;
   height: 300px;

@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+footer{
+    background-image: url(/footer/background-footer-mobile.png);
+    width: 100vw;
+    height: calc(0.124*100vw);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-size: contain;
+}
+
+footer p{
+   font-size: 20px;
+   color: white;
+}

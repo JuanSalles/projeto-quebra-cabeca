@@ -88,22 +88,30 @@ function embaralhar (arr){
 
 function Puzzle () {
 
-    const [jogo, setJogo] = useState(organizaQuadros(mtxEmbaralhada, pastaDeFotos[0].nome));
+  const [jogo, setJogo] = useState(organizaQuadros(mtxEmbaralhada, pastaDeFotos[0].nome));
 
-    const [fotoEscolhida, setFoto] = useState(pastaDeFotos[0].nome);
+  const [fotoEscolhida, setFoto] = useState(pastaDeFotos[0].nome);
 
-    function organizaQuadros(arr, foto){
-    
-    return(
+  const [ajuda, setAjuda] = useState (() => <></>);
+
+  function organizaQuadros(arr, foto){
+      let proporcao = window.screen.width*0.82;
+      let styleQuadrosBrancos = {
+        width: `${proporcao/(pastaDeFotos[indexFotos].tamanho)}px`,
+        height: `${proporcao/(pastaDeFotos[indexFotos].tamanho)}px`,
+        maxWidth: "110px",
+        maxHeight:"110px"
+      }
+      return(
       arr.map((element, index) => {
         if(element === mtxCorreta[mtxCorreta.length-1]){
           whiteIndex = index;
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`, boxShadow: `0px 0px 5px 2px #f052f2`}}></div>
+            <div className="quadro branco" key={element} data-numero={`${index}`} style={styleQuadrosBrancos}></div>
           )
         }else{
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`}} 
+            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`, ...styleQuadrosBrancos}} 
             onClick={(event) => setJogo(mainGame(event))}></div>
           )
         }
@@ -135,20 +143,36 @@ function Puzzle () {
     return(organizaQuadros(resultado, pastaDeFotos[indexFotos].nome))
   }
 
-  const styleColunas = {"gridTemplateColumns": `repeat(${pastaDeFotos[indexFotos].tamanho}, auto)`}
+  const styleColunas = {
+    "gridTemplateColumns": `repeat(${pastaDeFotos[indexFotos].tamanho}, auto)`,
+  }
 
+   
   return(
-    <div className="container">
-      <div className='container-game-instrucoes'>
-        <div className='container-instrucoes'><p>Para jogar: Click nas peças em volta da peça em destaque.</p>
-        </div>
-        <div className="container__game jogo" style={styleColunas}>{jogo}</div>
-      </div>
+    <div className="container-jogo">
+      <p>{pastaDeFotos[indexFotos].tamanho}X{pastaDeFotos[indexFotos].tamanho}</p>
+      <div className="container__game" style={styleColunas}>{jogo}</div>
 
-      <div className='container-game-instrucoes'>
-        <div className='container-instrucoes'><p>Para Trocar: Click na imagem completa.</p>
-        </div>
-        <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/Imagens/${fotoEscolhida}/foto.png")`}} onClick={ () =>{
+       <button type="button" className='botao-ajuda' onClick={() => 
+        setAjuda(() => {
+
+          if (ajuda === ""){
+            return(
+              <div className='ajudaDoJogo'>
+              <p>Mover as peças pelo espaço vazio você deve!</p>
+              <img src="/emote/yoda.png"/>
+              </div>
+            )
+          }else{
+            return ""
+          }
+            
+        })
+        }>HELP</button>
+
+      <span className='container__ajudaDoJogo'>{ajuda}</span>
+      
+      {/* <div className="container__game resposta" style={{backgroundImage: `url("/gamephotos/Imagens/${fotoEscolhida}/foto.png")`}} onClick={ () =>{
         
         if(indexFotos<pastaDeFotos.length-1){
           indexFotos++;
@@ -162,8 +186,10 @@ function Puzzle () {
             return (pastaDeFotos[indexFotos].nome);
           })
         }
-        }}></div>
-      </div>
+        }}>
+
+        
+      </div> */}
       
     </div>
   )
