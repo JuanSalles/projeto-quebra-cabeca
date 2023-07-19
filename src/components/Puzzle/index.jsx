@@ -7,7 +7,7 @@ class Foto {
   }
 }
 
-const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4)]
+const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4), new Foto("corvo-azul", 5)]
 
 let indexFotos = 0;
 let mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
@@ -92,7 +92,7 @@ function Puzzle () {
 
   const [fotoEscolhida, setFoto] = useState(pastaDeFotos[0].nome);
 
-  const [ajuda, setAjuda] = useState (() => <></>);
+  const [ajuda, setAjuda] = useState (() => "");
 
   function organizaQuadros(arr, foto){
       let proporcao = window.screen.width*0.82;
