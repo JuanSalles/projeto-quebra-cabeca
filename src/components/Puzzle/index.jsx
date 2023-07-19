@@ -9,7 +9,6 @@ class Foto {
 
 const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4)]
 
-let arrayNumerico = [];
 let indexFotos = 0;
 let mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
@@ -19,7 +18,7 @@ function gerarArray(size = pastaDeFotos[indexFotos].tamanho){
  
   const arr = [];
   for(let i=0; i<size*size; i++){
-    arr.push(String.fromCharCode(65+i))
+    arr.push(i)
   }
   return arr
 }
@@ -35,54 +34,54 @@ function embaralhar (arr){
     let result = Math.floor(Math.random() * max);
     return result
   }
+
   while(condition){
 
     resultado = [];
     arrayMem = [...arr];
     invercoes = 0;
     
+    
+    
     arr.forEach(() => {
 
       resultado.push(...arrayMem.splice(randomNumber(arrayMem.length),1));
-
-      // if(element !== resultado[index]){
-      //   invercoes++
-      //   
-      // }
-      // if(index===arr.length-1){
-      //   if((invercoes%2)!==0){
-      //     condition = false;
-      //   }    
-      // }
       })
+
+      arrayMem = [...resultado]
       resultado.forEach((element) =>{
-        invercoes += resultado.reduce((acumulador, valorAtual)=>{
-          console.log(element, invercoes, valorAtual)
+        
+        invercoes += arrayMem.reduce((acumulador, valorAtual)=>{
+          
           if (element !== arr[arr.length-1]){
-            if ((element.charCodeAt(0)-65)<(valorAtual.charCodeAt(0)-65)){
-              return acumulador++
+            if ((element)>(valorAtual)){
+              console.log("inversao")
+              return acumulador+1;
             }else{
-              return acumulador
+              return acumulador;
             }
+          }else{
+              return acumulador
           }
         }, 0)
+        arrayMem.shift()
       })
-
-      
 
       if((Math.sqrt(arr.length)%2)!==0){
         if((invercoes%2)!==0){
+          console.log("invercoes impares")
+        }else{
           condition = false;
         }
       }else{
         if((invercoes%2)===0){
           condition = false;
+        }else{
+          console.log("invercoes impares")
         }
       }
-      
   }
-  
-
+  console.log(resultado, invercoes);
   return resultado;
 }
 
