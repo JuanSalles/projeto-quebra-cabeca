@@ -37,7 +37,7 @@ nav p{
     width: 44px;
     height: 29px;
     margin: 9px;
-    background-image: url(navegar/MENU.png);
+    background-image: url("navegar/MENU.png");
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -49,7 +49,7 @@ nav p{
 }
 
 .container__botao:checked~.container__menu__hamburguer>.menu-hamburguer{
-    background-image: url(navegar/MENU-ativo.png);
+    background-image: url("navegar/MENU-ativo.png");
 }
 
 .container__botao:checked~.container__menu__hamburguer{
