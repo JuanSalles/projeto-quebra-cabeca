@@ -99,7 +99,7 @@ function Puzzle () {
         if(element === mtxCorreta[mtxCorreta.length-1]){
           whiteIndex = index;
           return(
-            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`, boxShadow: `0px 0px 5px 2px white`}}></div>
+            <div className="quadro" key={element} data-numero={`${index}`} style={{backgroundImage: `url("/gamephotos/Imagens/${foto}/${element}.png")`, boxShadow: `0px 0px 5px 2px #f052f2`}}></div>
           )
         }else{
           return(

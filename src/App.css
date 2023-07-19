@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+
+
 .principal-container{
   color: white;
 }
@@ -22,6 +27,12 @@
   background-size: contain;
 }
 
+.container-game-instrucoes{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .container-instrucoes{
   display: flex;
   width: 300px;
@@ -31,8 +42,9 @@
 }
 
 .container-instrucoes p{
+  font-family: "Anton", sans-serif;
   font-size: 15px;
-  color: white;
+  color: #569ea6;
   text-align: center;
   padding-bottom: 10px;
 
