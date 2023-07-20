@@ -7,13 +7,13 @@ class Foto {
   }
 }
 
-const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4), new Foto("corvo-azul", 5)]
+const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4), new Foto("corvo-azul", 5)];
 
+let whiteIndex;
 let indexFotos = 0;
 let invercoes;
 let mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
-let whiteIndex;
 let yourTaps = 0;
 let vitoria = false;
 
@@ -51,7 +51,7 @@ function embaralhar (arr){
       })
 
       arrayMem = [...resultado]
-      resultado.forEach((element) =>{
+      resultado.forEach((element, index) =>{
         
         invercoes += arrayMem.reduce((acumulador, valorAtual)=>{
           
@@ -63,6 +63,7 @@ function embaralhar (arr){
               return acumulador;
             }
           }else{
+              whiteIndex = index;
               return acumulador
           }
         }, 0)
@@ -75,13 +76,14 @@ function embaralhar (arr){
         }else{
           condition = false;
         }
-      }else{
-        if((invercoes%2)===0){
-          condition = false;
-        }else{
-          console.log("invercoes impares")
-        }
+      }else if(((parseInt(whiteIndex/pastaDeFotos[indexFotos].tamanho))%2)!==0){
+          if((invercoes%2)===0){
+            condition = false;
+          }
+      }else if((invercoes%2)!==0){
+        condition = false;
       }
+      
   }
   console.log(resultado, invercoes);
   return resultado;
@@ -108,6 +110,7 @@ function Puzzle () {
       arr.map((element, index) => {
         if(element === mtxCorreta[mtxCorreta.length-1]){
           whiteIndex = index;
+          console.log(whiteIndex);
           return(
             <div className="quadro branco" key={element} data-numero={`${index}`} style={styleQuadrosBrancos}></div>
           )
