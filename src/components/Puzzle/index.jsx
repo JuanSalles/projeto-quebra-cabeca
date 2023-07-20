@@ -148,6 +148,8 @@ function Puzzle () {
 
     setAjuda(()=>{
       if(vitoria){
+        let audio = new Audio("/audios/sabre.mp3")
+        audio.play();
         return(
           <div className='ajudaDoJogo'>
           <p>Agradecer a força, voce deve!</p>
