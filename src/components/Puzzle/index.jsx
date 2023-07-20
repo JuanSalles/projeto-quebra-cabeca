@@ -15,6 +15,7 @@ let mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
 let whiteIndex;
 let yourTaps = 0;
+let vitoria = false;
 
 function gerarArray(size = pastaDeFotos[indexFotos].tamanho){
  
@@ -142,6 +143,22 @@ function Puzzle () {
         }
     
     mtxEmbaralhada = resultado;
+    
+    vitoria = resultado.length === mtxCorreta.length && resultado.every((value, index) => value === mtxCorreta[index])
+
+    setAjuda(()=>{
+      if(vitoria){
+        return(
+          <div className='ajudaDoJogo'>
+          <p>Agradecer a força, voce deve!</p>
+          <img src="/emote/yoda.png"/>
+          </div>
+        )
+      }else{
+        return ""
+      }
+    })
+    
     console.log(pastaDeFotos[indexFotos].nome);
     return(organizaQuadros(resultado, pastaDeFotos[indexFotos].nome))
   }
@@ -163,7 +180,7 @@ function Puzzle () {
             if (ajuda === ""){
               return(
                 <div className='ajudaDoJogo'>
-                <p>Mover as peças pelo espaço vazio você deve!</p>
+                <p>Mover as peças pelo espaço vazio, você deve!</p>
                 <img src="/emote/yoda.png"/>
                 </div>
               )
@@ -194,6 +211,7 @@ function Puzzle () {
           return(
             <div key={`seletor-${element.nome}`} className='botao-escolha' style={{backgroundImage:`url("/gamephotos/Imagens/${element.nome}/foto.png")`}} id={`escolha-${element.nome}`} onClick={(event) => {
               setFoto(() =>{
+                vitoria = false;
 
                 yourTaps = 0;
                 
