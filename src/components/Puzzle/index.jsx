@@ -10,9 +10,11 @@ class Foto {
 const pastaDeFotos = [new Foto("corvo-verde", 3), new Foto("sapo-vermelho", 4), new Foto("corvo-azul", 5)]
 
 let indexFotos = 0;
+let invercoes;
 let mtxCorreta = gerarArray(pastaDeFotos[indexFotos].tamanho);
 let mtxEmbaralhada = embaralhar(mtxCorreta);
 let whiteIndex;
+let yourTaps = 0;
 
 function gerarArray(size = pastaDeFotos[indexFotos].tamanho){
  
@@ -27,7 +29,6 @@ function embaralhar (arr){
 
   let resultado;
   let arrayMem;
-  let invercoes;
   let condition = true;
 
   const randomNumber = (max) =>{
@@ -133,9 +134,11 @@ function Puzzle () {
         if((linha === parseInt((whiteIndex)/pastaDeFotos[indexFotos].tamanho))){
           if((mtxEmbaralhada[index-1] === mtxEmbaralhada[whiteIndex]) || (mtxEmbaralhada[index+1] === mtxEmbaralhada[whiteIndex])){
             trocaElemento()
+            yourTaps++
           }
         }else if((index-pastaDeFotos[indexFotos].tamanho === whiteIndex)||(index+pastaDeFotos[indexFotos].tamanho === whiteIndex)){
           trocaElemento()
+          yourTaps++
         }
     
     mtxEmbaralhada = resultado;
@@ -173,6 +176,15 @@ function Puzzle () {
 
         <span className='container__ajudaDoJogo'>{ajuda}</span>
       
+      <div className='container__scores'>
+          <div className='scores'>
+          <h2>SCORES</h2>
+          <p>Min: {`${invercoes}`}</p>
+          <p>Your taps: {`${yourTaps}`}</p>
+          </div>
+      </div>
+
+
       <div className='titulo-escolhas'>
           <p>CHOSE YOUR IA PIC</p>
       </div>
@@ -182,6 +194,8 @@ function Puzzle () {
           return(
             <div key={`seletor-${element.nome}`} className='botao-escolha' style={{backgroundImage:`url("/gamephotos/Imagens/${element.nome}/foto.png")`}} id={`escolha-${element.nome}`} onClick={(event) => {
               setFoto(() =>{
+
+                yourTaps = 0;
                 
                 mtxCorreta = gerarArray(pastaDeFotos[index].tamanho);
                 mtxEmbaralhada = embaralhar(mtxCorreta);

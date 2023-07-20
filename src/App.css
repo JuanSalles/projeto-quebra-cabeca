@@ -68,6 +68,27 @@
   background: rgba(255, 255, 255, 0.40);
 }
 
+.container-scores{
+  display: flex;
+}
+
+.scores{
+  color: var(--text-third-color);
+  background-color: var(--text-dark-color);
+  border: solid 3px var(--text-third-color) ;
+  width: 167px;
+  height: 110px;
+  margin-top: 20px;
+}
+
+.scores h2{
+  text-align: center;
+}
+
+.scores p{
+  padding-left: 10px;
+}
+
 .botao-ajuda{
   margin: 20px;
   text-decoration: none;
