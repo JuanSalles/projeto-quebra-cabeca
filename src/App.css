@@ -1,31 +1,135 @@
-.principal-container{
-  color: white;
-}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 
 .container{
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 1024px;
+  justify-content: space-between;
+}
+
+.container-jogo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  
+}
+
+.container-puzzle{
+  display: flex;
+  flex-direction: column;
+  margin: 48px 0px 10px;
+  align-items: center;
+  max-width: 600px;
+}
+
+.container-puzzle p{
+  color: var(--text-second-color);
+  font-size: 20px;
   width: 100%;
-  gap: 20px;
-  flex-wrap: wrap;
-  padding: 30px;
+  margin-bottom: 5px;
 }
 .container__game{
   display: grid;
-  grid-template-columns: 100px 100px 100px;
   gap: 2px;
   
 }
-.quadro{
-  width: 100px;
+
+.ajudaDoJogo{
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  width: calc(0.73*100vw);
+  max-width: 400px;
+  background-color: var(--text-dark-color);
+  padding: 10px;
+  justify-content: center;
+}
+
+.ajudaDoJogo p{
+  padding-left: 10px;
+  color: var(--text-third-color);
+  font-size: 20px;
+  padding: 5px;
+}
+
+.ajudaDoJogo img{
   height: 100px;
+}
+
+.quadro{
+
   background-size: contain;
 }
 
-.resposta{
-  width: 300px;
-  height: 300px;
-  background-size: contain;
+.branco{
+  background: rgba(255, 255, 255, 0.40);
+}
+
+.container-scores{
+  display: flex;
+}
+
+.scores{
+  color: var(--text-third-color);
+  background-color: var(--text-dark-color);
+  border: solid 3px var(--text-third-color) ;
+  width: 167px;
+  height: 110px;
+  margin-top: 20px;
+}
+
+.scores h2{
+  text-align: center;
+}
+
+.scores p{
+  padding-left: 10px;
+}
+
+.botao-ajuda{
+  margin: 20px;
+  text-decoration: none;
+  border: none;
+  padding: 10px 23px;
+  background: rgba(30, 30, 30, 0.2); 
+  color: var(--nav-color);
+  font-size: 40px;
+  font-family: Anton, sans-serif;
+  box-shadow: 4px 6px 1px -1px rgba(0, 0, 0, 0.25); 
+}
+
+.titulo-escolhas{
+  margin-top: 40px;
+  color: var(--text-second-color);
+  font-size: 36px;
+}
+
+.titulo-escolhas p{
+  text-shadow: rgba(0, 0, 0, 0.25) 2px 2px 7px; 
+  stroke-width: 4px;
+  -webkit-text-stroke-width: 1px; /* largura da borda */
+  -webkit-text-stroke-color: #ffffff; /* cor da borda */
+}
+
+.container-escolhas{
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  margin: 20px 0px;
+  width: calc(0.73*100vw);
+  max-width: 600px;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+
+.botao-escolha{
+  width: 150px;
+  height: 150px;
+  border-radius: 50px;
+  background-size:cover;
 }

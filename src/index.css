@@ -1,10 +1,19 @@
+:root{
+  --background-grad: linear-gradient(180deg, #272F40 0%, #433673 50%, #6E268C 100%);
+  --nav-color: #569EA6;
+  --text-dark-color: #272F40;
+  --text-second-color: #F052F2;
+  --text-third-color: #9EDFE7;
+}
+
 *{
   padding: 0px;
   margin: 0px;
 }
 
 body{
-  background-color: black;
+  background: var(--background-grad);
   box-sizing: border-box;
   width: 100vw;
+  font-family: "Anton", sans-serif;
 }
